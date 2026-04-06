@@ -1,0 +1,260 @@
+/* The tall container that gives us scrolling room */
+.projects-tall-container {
+  height: 300vh; /* creates the scrollable area */
+  position: relative;
+  background-color: var(--bg-dark); /* match the theme */
+}
+
+/* The sticky container that stays fixed while we scroll */
+.projects-sticky-view {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden; /* Hide the horizontal overflow */
+  padding-top: var(--nav-height);
+}
+
+.projects-header {
+  position: absolute;
+  top: 15%;
+  left: 5%;
+  z-index: 10;
+}
+
+.projects-subtitle {
+  color: var(--accent-purple);
+  font-size: 1.1rem;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+/* The horizontal track that animates to the left */
+.projects-horizontal-track {
+  display: flex;
+  align-items: center;
+  width: max-content; /* allow it to grow horizontally */
+  padding: 0 10vw; /* padding on sides */
+  margin-top: 5rem;
+}
+
+.project-node-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 500px;
+  margin-right: 150px;
+}
+
+/* Stagger alternate cards up and down */
+.staggered-down {
+  transform: translateY(60px);
+}
+
+.staggered-up {
+  transform: translateY(-60px);
+}
+
+/* Glowing connecting lines */
+.connecting-line {
+  position: absolute;
+  left: -150px; /* span across the margin */
+  width: 150px;
+  height: 120px;
+  top: 50%;
+  transform: translateY(-50%);
+  fill: none;
+  stroke: url(#gradient); /* we can use css color fallback here */
+  stroke: rgba(139, 92, 246, 0.4);
+  stroke-width: 2;
+  z-index: -1;
+}
+
+.animated-path {
+  stroke-dasharray: 20;
+  animation: march 2s linear infinite;
+}
+
+@keyframes march {
+  to { stroke-dashoffset: -40; }
+}
+
+/* The Card itself */
+.project-frame {
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  /* Start with less glow, intensify on hover */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.project-frame:hover {
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 40px rgba(59, 130, 246, 0.2), inset 0 0 20px rgba(139, 92, 246, 0.1);
+  transform: scale(1.02);
+}
+
+/* Image section */
+.project-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  background: #111;
+}
+
+.project-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.project-frame:hover .project-thumbnail {
+  transform: scale(1.08);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 15, 0.7);
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.project-frame:hover .image-overlay {
+  opacity: 1;
+}
+
+/* Info Section with Masks */
+.project-info {
+  padding: 1.5rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 100%);
+}
+
+.title-row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+  margin-bottom: 1rem;
+}
+
+.mask-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.project-number {
+  font-family: 'Outfit';
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--accent-blue);
+  opacity: 0.7;
+  display: block;
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) 0.1s;
+}
+
+.project-title-slide {
+  font-family: 'Outfit';
+  font-size: 1.8rem;
+  color: #fff;
+  margin: 0;
+  display: block;
+  transform: translateY(100%);
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Hover triggers the slide up from mask */
+.project-frame:hover .project-number,
+.project-frame:hover .project-title-slide {
+  transform: translateY(0);
+}
+
+/* Non-hover states (since mobile user can't hover, let's just make it visible normally and only animate on desktop hover if needed, or just let them always be visible but slide up slightly) 
+Wait, if it's hidden by default, it might be bad UX. Let's make it always visible, but simply translate slightly up smoothly. */
+.project-number,
+.project-title-slide {
+  transform: translateY(0); /* Make visible by default for fallback */
+}
+
+/* On hover, give it a bounce */
+.project-frame:hover .project-title-slide {
+  transform: translateY(-4px);
+  color: var(--accent-blue);
+}
+.project-frame:hover .project-number {
+  transform: translateY(-4px) scale(1.1);
+  color: var(--accent-purple);
+}
+
+.project-desc-fade {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.tech-stack-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech-pill {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: border-color 0.3s;
+}
+
+.project-frame:hover .tech-pill {
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+@media (max-width: 768px) {
+  /* On mobile, disable the tall scroll logic if it glitches, 
+  or just make it flex vertically */
+  .projects-tall-container {
+    height: auto;
+  }
+  .projects-sticky-view {
+    position: relative;
+    height: auto;
+    overflow: visible;
+  }
+  .projects-horizontal-track {
+    flex-direction: column;
+    width: 100%;
+    transform: none !important;
+    padding: 0 5%;
+  }
+  .project-node-container {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 3rem;
+  }
+  .staggered-down, .staggered-up {
+    transform: none;
+  }
+  .connecting-line {
+    display: none;
+  }
+  .projects-header {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+}

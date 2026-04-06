@@ -1,0 +1,27 @@
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 60px;
+  background: #0f172a;
+}
+
+.card {
+  width: 220px;
+  height: 250px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.c1 { background: linear-gradient(135deg, #38bdf8, #0ea5e9); }
+.c2 { background: linear-gradient(135deg, #f43f5e, #e11d48); }
+.c3 { background: linear-gradient(135deg, #a855f7, #9333ea); }
