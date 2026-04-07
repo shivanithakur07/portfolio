@@ -9,7 +9,7 @@ const projects = [
     description: "A full-stack task management application with user authentication, real-time updates, and a responsive dashboard.",
     techStack: ["React", "Node.js", "MongoDB", "JWT"],
     githubLink: "https://github.com/shivanithakur07/Task-Master.git",
-    liveLink: "#",
+    liveLink: "https://task-master-11lk.vercel.app/",
     image: "/taskmaster.png"
   },
   {
@@ -34,7 +34,7 @@ const projects = [
 
 const Projects = () => {
   const targetRef = useRef(null);
-  
+
   // Create a scroll trigger based on this tall container
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -47,7 +47,7 @@ const Projects = () => {
   return (
     <div className="projects-tall-container" ref={targetRef}>
       <div className="projects-sticky-view">
-        
+
         <div className="projects-header">
           <h2 className="section-title">Featured Projects</h2>
           <p className="projects-subtitle">Scroll down to explore the ecosystem</p>
@@ -58,7 +58,7 @@ const Projects = () => {
             <ProjectCard project={project} key={project.id} index={index} />
           ))}
         </motion.div>
-        
+
       </div>
     </div>
   );
@@ -67,12 +67,12 @@ const Projects = () => {
 const ProjectCard = ({ project, index }) => {
   return (
     <div className={`project-node-container ${index % 2 !== 0 ? 'staggered-down' : 'staggered-up'}`}>
-      
+
       {/* Network line connecting to previous card */}
       {index !== 0 && (
         <svg className="connecting-line" preserveAspectRatio="none" viewBox="0 0 100 100">
-          <path d={index % 2 !== 0 ? "M0,90 Q50,90 50,50 T100,10" : "M0,10 Q50,10 50,50 T100,90"} 
-                className="animated-path" />
+          <path d={index % 2 !== 0 ? "M0,90 Q50,90 50,50 T100,10" : "M0,10 Q50,10 50,50 T100,90"}
+            className="animated-path" />
         </svg>
       )}
 
@@ -90,7 +90,7 @@ const ProjectCard = ({ project, index }) => {
         </div>
 
         <div className="project-info">
-          
+
           <div className="title-row">
             <div className="mask-container">
               <span className="project-number">{project.id}</span>
@@ -99,12 +99,12 @@ const ProjectCard = ({ project, index }) => {
               <h3 className="project-title-slide">{project.title}</h3>
             </div>
           </div>
-          
+
           <p className="project-desc-fade">{project.description}</p>
-          
+
           <div className="tech-stack-row">
             {project.techStack.map((tech, i) => (
-               <span key={i} className="tech-pill">{tech}</span>
+              <span key={i} className="tech-pill">{tech}</span>
             ))}
           </div>
 
