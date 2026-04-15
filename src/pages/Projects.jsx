@@ -9,7 +9,7 @@ const projects = [
     description: "A full-stack task management application with user authentication, real-time updates, and a responsive dashboard.",
     techStack: ["React", "Node.js", "MongoDB", "JWT"],
     githubLink: "https://github.com/shivanithakur07/Task-Master.git",
-    liveLink: "https://task-master-11lk.vercel.app/",
+    liveLink: "https://task-master-one-swart.vercel.app/",
     image: "/taskmaster.png"
   },
   {
@@ -27,7 +27,7 @@ const projects = [
     description: "An interactive, beautifully designed browser game with a responsive layout and intelligent move detection.",
     techStack: ["React", "CSS3", "JavaScript"],
     githubLink: "https://github.com/shivanithakur07/Tic-Tac-Toe.git",
-    liveLink: "#",
+    liveLink: "https://tic-tac-toe-psi-nine-75.vercel.app/",
     image: "/tictactoe.png"
   }
 ];
